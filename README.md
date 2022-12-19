@@ -1,4 +1,8 @@
 README for NXP:
+# PiBook_tracker
+A book reading tracker via Rasbperry Pi/OM5577/PN7120SM platform
+
+The project use NXP 7120 controller, the information of NXP is below:
 linux_libnfc-nci
 ================
 Linux NFC stack for NCI based NXP NFC Controllers (PN7150, PN7120).
@@ -7,20 +11,28 @@ Information about NXP NFC Controller can be found on [NXP website](https://www.n
 
 Further details about the stack [here](https://www.nxp.com/doc/AN11697).
 
-Release version
----------------
-R2.4 includes dynamic adaptation to the NFC Controller, multiple tags support, and some bug fixes (refer to the [documentation](https://www.nxp.com/doc/AN11697) for more details).
+PiBook_tracker.py: main function
 
-R2.2 includes support for alternative to pn5xx_i2c kernel driver and some bug fixes (refer to the [documentation](https://www.nxp.com/doc/AN11697) for more details).
+PN7210.py: migrated from Doron Horwi code: 
+https://gist.github.com/doronhorwitz/fc5c4234a9db9ed87c53213d79e63b6c
 
-R2.1 includes support for PN7150 NFC Controller IC and some bug fixes (refer to the [documentation](https://www.nxp.com/doc/AN11697) for more details).
+Need NXP nfcDemoApp as the dependencies:
 
-R2.0 includes LLCP1.3 support and some bug fixes (refer to the [documentation](https://www.nxp.com/doc/AN11697) for more details).
+Running out-of-box PN7120 applications on Raspberry PI
+a.	Install tools for PN7210 driver on Raspberry Pi
+$ sudo apt-get install autoconf automake libtool git
+b.	Clone NXP PN7120 from NXP Github
+$ git clone https://github.com/NXPNFCLinux/linux_libnfc-nci.git
+c.	Configure the library
+$ cd linux_libnfc-nci
+$ ./bootstrap
+$ ./configure –enable-alt
+d.	Build and install the library
+Execute the commands(take up to 5 minutes to build libraries)
+$ make
+$ sudo make install
+$ export LD_LIBRARY_PATH=/usr/local/lib
 
-R1.0 is the first official release of Linux libnfc-nci stack
-
-Possible problems, known errors and restrictions of R2.4:
----------------------------------------------------------
-LLCP1.3 support requires OpenSSL Cryptography and SSL/TLS Toolkit (version 1.0.1j or later)
-
-Readme for PiBook Tracker
+Testing eBay NTAG215 chips
+Run demo application in poll mode executing the command:
+$ nfcDemoApp poll
