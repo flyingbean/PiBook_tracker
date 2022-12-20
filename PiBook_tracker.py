@@ -75,7 +75,8 @@ def main():
         #print('current_readTime = ', current_readTime)
         
         
-        sheet.update_acell('I3', readTime_acc)
+        sheet.update_cell(readBook_row,9, readTime_acc)
+        #sheet.update_acell('I3', readTime_acc)
         #sheet.update_acell(sheet.cell(readBook_row,9), readTime_acc)
         #print('targetDate_list: ', targetDate_list)
         #print('process_list: ', process_list)
@@ -83,7 +84,8 @@ def main():
         
         smileyBytes = b'\xf0\x9f\x99\x84'
         #smileyBytes.decode('utf-8')
-        sheet.update('J3', smileyBytes.decode('utf-8'))
+        #sheet.update('J3', smileyBytes.decode('utf-8'))
+        sheet.update_cell(readBook_row,10, smileyBytes.decode('utf-8'))
         
         
         
